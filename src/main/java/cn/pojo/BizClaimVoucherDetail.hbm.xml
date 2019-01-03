@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="cn.pojo.BizClaimVoucherDetail" table="biz_claim_voucher_detail" schema="jboa">
+        <id name="id" column="ID"/>
+        <property name="item" column="ITEM"/>
+        <property name="account" column="ACCOUNT"/>
+        <property name="des" column="DES"/>
+    </class>
+</hibernate-mapping>

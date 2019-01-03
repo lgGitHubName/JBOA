@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="cn.pojo.SysEmployee" table="sys_employee" schema="jboa">
+        <id name="sn" column="SN"/>
+        <property name="name" column="NAME"/>
+        <property name="password" column="PASSWORD"/>
+        <property name="status" column="STATUS"/>
+    </class>
+</hibernate-mapping>

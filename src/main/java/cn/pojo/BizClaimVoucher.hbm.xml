@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="cn.pojo.BizClaimVoucher" table="biz_claim_voucher" schema="jboa">
+        <id name="id" column="ID"/>
+        <property name="createSn" column="CREATE_SN"/>
+        <property name="createTime" column="CREATE_TIME"/>
+        <property name="event" column="EVENT"/>
+        <property name="totalAccount" column="TOTAL_ACCOUNT"/>
+        <property name="status" column="STATUS"/>
+        <property name="modifyTime" column="MODIFY_TIME"/>
+    </class>
+</hibernate-mapping>

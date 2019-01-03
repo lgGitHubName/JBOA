@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+		http://www.springframework.org/schema/mvc
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.1.xsd">
+
+    <context:component-scan base-package="cn.dao.impl,cn.service.impl,cn.action" />
+
+    <bean id="sessionFactory"
+          class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+        <property name="configLocation"
+                  value="classpath:hibernate.cfg.xml">
+        </property>
+    </bean>
+
+    <bean id="bizCheckResultAction" class="cn.action.BizCheckResultAction">
+        <property name="bizCheckResultService" ref="bizCheckResultService"></property>
+    </bean>
+
+    <!--声明式事务  -->
+    <bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <!-- 定义规则 -->
+    <tx:advice id="myAdvice">
+        <tx:attributes>
+            <tx:method name="get*" read-only="true"/>
+            <tx:method name="*"/>
+        </tx:attributes>
+    </tx:advice>
+
+    <!-- 织入 -->
+    <aop:config>
+        <aop:pointcut expression="execution(* cn.service.impl.*.*(..))" id="pointcuts"/>
+        <aop:advisor advice-ref="myAdvice" pointcut-ref="pointcuts"/>
+    </aop:config>
+</beans>
